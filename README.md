@@ -15,8 +15,8 @@
 
 
 ### Association
-has_many :items  
-has_many :buys  
+has_many :items
+has_many :buys
 
 
 ##  itemテーブル
@@ -37,8 +37,8 @@ has_many :buys
 
 
 ### Association
-belongs_to :user  
-has_one :buy  
+belongs_to :user
+has_one :buy
 
 ## buy
 
@@ -55,5 +55,5 @@ has_one :buy
 
 
 ### Association
-belongs_to :user  
-has_one :item  
+belongs_to :user
+has_one :item
