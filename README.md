@@ -32,7 +32,6 @@ has_many :buys
 | shipping_day     | integer     | null: false |
 | price            | integer     | null: false |
 | user_id          | integer     | null: false foreign_key: true |
-| image            | activestrage| null: false |
 
 
 ### Association
