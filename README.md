@@ -1,59 +1,24 @@
-## userテーブル
+# README
 
-|Column            |Type    |Options      |
-|------------------|--------|-------------|
-| nickname         | string | null: false |
-| email            | string | null: false |
-| password         | string | null: false |
-| first_name       | string | null: false |
-| last_name        | string | null: false |
-| kana_first_name  | string | null: false |
-| kana_last_name   | string | null: false |
-| year             | string | null: false |
-| month            | string | null: false |
-| day              | string | null: false |
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
+Things you may want to cover:
 
-### Association
-has_many :items
-has_many :buys
+* Ruby version
 
+* System dependencies
 
-##  itemテーブル
+* Configuration
 
-|Column            |Type         |Options      |
-|------------------|-------------|-------------|
-| name             | string      | null: false |
-| description      | string      | null: false |
-| category         | string      | null: false |
-| Status           | string      | null: false |
-| shipping_burden  | string      | null: false |
-| shipping_area    | string      | null: false |
-| shipping_day     | string      | null: false |
-| price            | string      | null: false |
-| month            | string      | null: false |
-| user_id          | string      | null: false |
-| image            | activestrage| null: false |
+* Database creation
 
+* Database initialization
 
-### Association
-belongs_to :user
-has_one :buy
+* How to run the test suite
 
-## buy
+* Services (job queues, cache servers, search engines, etc.)
 
-|Column            |Type         |Options      |
-|------------------|-------------|-------------|
-| post_number      | string      | null: false |
-| prefecture       | string      | null: false |
-| city_name        | string      | null: false |
-| address          | string      | null: false |
-| building_name    | string      | null: false |
-| call_number      | string      | null: false |
-| consumer_user_id | string      | null: false |
-| item_id          | string      | null: false |
+* Deployment instructions
 
-
-### Association
-belongs_to :user
-has_one :item
+* ...
