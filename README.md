@@ -1,4 +1,4 @@
-## userテーブル
+## usersテーブル
 
 |Column             |Type    |Options      |
 |-------------------|--------|-------------|
@@ -17,7 +17,7 @@ has_many :items
 has_many :buys
 
 
-##  itemテーブル
+##  itemsテーブル
 
 |Column                |Type         |Options      |
 |---------------------|-------------|-------------|
@@ -37,7 +37,7 @@ belongs_to :user
 has_one :buy  
 
 
-## buy
+## buysテーブル
 
 |Column            |Type         |Options      |
 |------------------|-------------|-------------|
@@ -50,7 +50,7 @@ belongs_to :user
 belongs_to :item  
 has_one :consumer_place  　
 
-## consumer_place
+## consumer_placesテーブル
 
 |Column            |Type         |Options      |
 |------------------|-------------|-------------|
