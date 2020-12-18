@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   VALID_PASS =  /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i
-  VALID_KANZI = /[一-龠々]/
+  VALID_KANZI =  /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
   VALID_KATAKANA = /\p{Katakana}/
   validates :password, format: { with: VALID_PASS }
   validates :first_name, presence: true, format: { with: VALID_KANZI }
