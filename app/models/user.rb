@@ -4,14 +4,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
   VALID_PASS =  /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i
+  validates :password, format: { with: VALID_PASS }
+
   VALID_KANZI =  /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
   VALID_KATAKANA = /\p{Katakana}/
-  validates :password, format: { with: VALID_PASS }
-  validates :first_name, presence: true, format: { with: VALID_KANZI }
-  validates :last_name, presence: true, format: { with: VALID_KANZI }
-  validates :kana_first_name, presence: true, format: { with: VALID_KATAKANA }
-  validates :kana_last_name, presence: true, format: { with: VALID_KATAKANA }
-  validates :birthday, presence: true
+
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+
+      with_options format: { with: VALID_KANZI } do
+        validates :first_name
+        validates :last_name
+      end
+
+      with_options format: { with: VALID_KATAKANA } do
+        validates :kana_first_name
+        validates :kana_last_name
+      end
+  end
 end

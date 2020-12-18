@@ -11,8 +11,8 @@
     </div>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-      <%= devise_error_messages! %>
-      <% render 'shared/error_messages', model: f.object %>
+      <% devise_error_messages! %>
+      <%= render 'shared/error_messages', model: f.object %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <div class="form-group">
