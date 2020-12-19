@@ -11,12 +11,6 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
-    it "passwordが6文字以上かつ英数字1つずつ入れることで登録できる。" do
-    
-      @user.password = "000000a"
-      @user.password_confirmation = "000000a"
-      expect(@user).to be_valid
-    end
   end
 
   context '内容に問題がある場合' do
