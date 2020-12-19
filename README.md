@@ -29,7 +29,7 @@ has_many :buys
 | shipping_area_id    | integer     | null: false |
 | shipping_day_id     | integer     | null: false |
 | price               | integer     | null: false |
-| user                | reference   | null: false foreign_key: true ｜
+| user                | reference   | foreign_key: true ｜
 
 
 ### Association
