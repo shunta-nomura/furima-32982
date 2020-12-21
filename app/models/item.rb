@@ -10,7 +10,7 @@ class Item < ApplicationRecord
       validates :shipping_day_id
       validates :shipping_area_id
     end
-    validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :name
     validates :description
     validates :image
@@ -22,5 +22,4 @@ class Item < ApplicationRecord
   belongs_to :shipping_burden
   belongs_to :shipping_area
   belongs_to :shipping_day
-
 end
