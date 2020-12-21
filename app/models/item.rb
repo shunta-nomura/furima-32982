@@ -8,8 +8,8 @@ class Item < ApplicationRecord
       validates :status_id
       validates :shipping_burden_id
       validates :shipping_day_id
+      validates :shipping_area_id
     end
-    validates :shipping_area_id, numericality: { other_than: 0 }
     validates :price, numericality: { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 9999999 }
     validates :name
     validates :description

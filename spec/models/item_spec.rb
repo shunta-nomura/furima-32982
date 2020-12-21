@@ -36,10 +36,22 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
+    it 'カテゴリー情報のactive_hashが1ならば登録できない' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+    end
+
     it '商品の状態が無いと登録できないこと' do
       @item.status_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
+    end
+
+    it '商品状態のactive_hashが1ならば登録できない' do
+      @item.status_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
     end
 
     it '配送料の負担が無いと登録できないこと' do
@@ -48,16 +60,34 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Shipping burden can't be blank")
     end
 
-    it '配送料の地域が無いと登録できないこと' do
+    it '配送料の負担のactive_hashが1ならば登録できない' do
+      @item.shipping_burden_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping burden must be other than 1")
+    end
+
+    it '配送先の地域が無いと登録できないこと' do
       @item.shipping_area_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+    end
+
+    it '配送先地域のactive_hashが1ならば登録できない' do
+      @item.shipping_area_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
     end
 
     it '発送までの日時が無いと登録できないこと' do
       @item.shipping_day_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+    end
+
+    it '発送までの日時のactive_hashが1ならば登録できない' do
+      @item.shipping_day_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
     end
 
     it '価格の情報が無いと登録できないこと' do
@@ -67,7 +97,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の範囲が、300円以下なら登録できないこと' do
-      @item.price = 100
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
     end
