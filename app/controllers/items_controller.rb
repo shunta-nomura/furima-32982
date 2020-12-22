@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if @item.user_id != current_user.id?
+      render :show
+    end
   end
 
   def update
