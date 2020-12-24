@@ -3,8 +3,8 @@ class BuyItem
   attr_accessor :post_number,:prefecture_id,:city_name,:address,:building_name,:call_number,:user_id,:item_id
 
   with_options presence: true do
-    validates :post_number
-    validates :prefecture_id
+    validates :post_number, format: { with: /\A\d{3}[-]\d{4}\z/}
+    validates :prefecture_id ,numericality: { other_than: 0 }
     validates :city_name
     validates :address
     validates :call_number
