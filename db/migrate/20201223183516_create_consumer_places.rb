@@ -6,8 +6,8 @@ class CreateConsumerPlaces < ActiveRecord::Migration[6.0]
       t.string        :city_name,        null:false
       t.string        :address,        null:false
       t.string        :building_name,        null:false
-      t.integer        :call_number,        null:false
-      t.references     :buy,         foreign_key: true
+      t.bigint    :call_number,        null:false
+      t.references     :buy,         foreign_key: true, null:false
       t.timestamps
     end
   end
