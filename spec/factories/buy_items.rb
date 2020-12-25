@@ -6,8 +6,8 @@ FactoryBot.define do
     address { '青山1-1-1' }
     building_name { '東京ライオンズヒルズ' }
     call_number { '09012345678' }
-    association :item
+    token {"tok_abcdefghijk00000000000000000"}
     association :user
-    association :buy
+    association :item
   end
 end

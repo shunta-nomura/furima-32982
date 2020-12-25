@@ -5,8 +5,10 @@ class BuysController < ApplicationController
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @buy_item = BuyItem.new(buy_item_params)
     if @buy_item.valid?
+      pay_item
       @buy_item.save
       redirect_to root_path
     else
@@ -25,6 +27,15 @@ class BuysController < ApplicationController
       :address, 
       :building_name, 
       :call_number,
-    ).merge(user_id: current_user.id, item_id: params[:item_id] )
+    ).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token] )
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: params[:token],    # カードトークン
+      currency: 'jpy' 
+    )
   end
 end
