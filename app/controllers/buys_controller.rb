@@ -1,11 +1,13 @@
 class BuysController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    buys = Buy.all
     @buy_item = BuyItem.new
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to new_user_session_path
     else
-      if current_user.id == @item.user_id
+
+      if current_user.id == @item.user_id || buys.exists?(item_id: @item.id)
         redirect_to root_path
       end
     end
