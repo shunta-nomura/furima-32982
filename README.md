@@ -59,7 +59,7 @@ has_one :consumer_place  　
 | city_name        | string      | null: false |
 | address          | string      | null: false |
 | building_name    | string      |             |
-| call_number      | string      | null: false |
+| call_number      | integer     | null: false |
 | buy              | reference   | null: false foreign_key: true |
 
 ### Association 
