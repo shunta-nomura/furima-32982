@@ -32,7 +32,7 @@ RSpec.describe BuyItem, type: :model do
     end
 
     it 'prefecture_idが0であれば登録できない' do
-      @buy_item.prefecture_id = '0'
+      @buy_item.prefecture_id = 0
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include('Prefecture must be other than 0')
     end
