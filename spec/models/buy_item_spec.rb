@@ -60,6 +60,18 @@ RSpec.describe BuyItem, type: :model do
       expect(@buy_item.errors.full_messages).to include("Call number can't be blank")
     end
 
+    it 'call_numberが数字のみでなければ登録できない' do
+      @buy_item.call_number = "1234567890a"
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Call number is not a number")
+    end
+
+    it 'call_numberが12文字以上であれば登録できない' do
+      @buy_item.call_number = 123456789012
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Call number is too long (maximum is 11 characters)")
+    end
+
     it 'tokenが空であれば登録できない' do
       @buy_item.token = nil
       @buy_item.valid?

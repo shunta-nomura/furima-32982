@@ -7,7 +7,7 @@ class BuyItem
     validates :prefecture_id, numericality: { other_than: 0 }
     validates :city_name
     validates :address
-    validates :call_number
+    validates :call_number, length: { maximum: 11 }, numericality: { only_interger: true }
     validates :item_id
     validates :user_id
     validates :token
