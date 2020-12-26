@@ -1,16 +1,10 @@
 class BuysController < ApplicationController
+  before_action :item_find, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
   def index
     @item = Item.find(params[:item_id])
-    buys = Buy.all
     @buy_item = BuyItem.new
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    else
-
-      if current_user.id == @item.user_id || buys.exists?(item_id: @item.id)
-        redirect_to root_path
-      end
-    end
+    redirect_to root_path if current_user.id == @item.user_id || !@item.buy.nil?
   end
 
   def create
@@ -21,30 +15,34 @@ class BuysController < ApplicationController
       @buy_item.save
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
       render :index
     end
   end
 
   private
+
   def buy_item_params
     params.require(:buy_item)
-    .permit(
-      :post_number, 
-      :prefecture_id, 
-      :city_name, 
-      :address, 
-      :building_name, 
-      :call_number,
-    ).merge(user_id: current_user.id, item_id: params[:item_id],token: params[:token] )
+          .permit(
+            :post_number,
+            :prefecture_id,
+            :city_name,
+            :address,
+            :building_name,
+            :call_number
+          ).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
+      amount: @item.price, # 商品の値段
       card: params[:token],    # カードトークン
-      currency: 'jpy' 
+      currency: 'jpy'
     )
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end

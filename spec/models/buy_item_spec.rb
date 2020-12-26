@@ -4,7 +4,7 @@ RSpec.describe BuyItem, type: :model do
   before do
     @user = FactoryBot.build(:user)
     @item = FactoryBot.build(:item)
-    @buy_item = FactoryBot.build(:buy_item, user_id: @user,item_id:@item) 
+    @buy_item = FactoryBot.build(:buy_item, user_id: @user, item_id: @item)
   end
 
   context '正常系' do
@@ -26,15 +26,20 @@ RSpec.describe BuyItem, type: :model do
     end
 
     it 'post_numberは3文字-4文字の数字以外の登録できない' do
-      @buy_item.post_number = "1234567"
+      @buy_item.post_number = '1234567'
       @buy_item.valid?
-      expect(@buy_item.errors.full_messages).to include("Post number is invalid")
+      expect(@buy_item.errors.full_messages).to include('Post number is invalid')
     end
 
     it 'prefecture_idが0であれば登録できない' do
-      @buy_item.prefecture_id = "0"
+      @buy_item.prefecture_id = '0'
       @buy_item.valid?
-      expect(@buy_item.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@buy_item.errors.full_messages).to include('Prefecture must be other than 0')
+    end
+    it 'prefecture_idが空であれば登録できない' do
+      @buy_item.prefecture_id = nil
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Prefecture can't be blank")
     end
 
     it 'city_nameが空であれば登録できない' do
@@ -59,6 +64,18 @@ RSpec.describe BuyItem, type: :model do
       @buy_item.token = nil
       @buy_item.valid?
       expect(@buy_item.errors.full_messages).to include("Token can't be blank")
+    end
+
+    it 'user_idが空であれば登録できない' do
+      @buy_item.user_id = nil
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'item_idが空であれば登録できない' do
+      @buy_item.item_id = nil
+      @buy_item.valid?
+      expect(@buy_item.errors.full_messages).to include("Item can't be blank")
     end
   end
 end

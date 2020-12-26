@@ -19,19 +19,19 @@ RSpec.describe Item, type: :model do
     end
 
     it '商品名が無いと登録できないこと' do
-      @item.name = ''
+      @item.name = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
 
     it '商品の説明が無いと登録できないこと' do
-      @item.description = ''
+      @item.description = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Description can't be blank")
     end
 
     it 'カテゴリー情報が無いと登録できないこと' do
-      @item.category_id = ''
+      @item.category_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '商品の状態が無いと登録できないこと' do
-      @item.status_id = ''
+      @item.status_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
     end
@@ -55,7 +55,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '配送料の負担が無いと登録できないこと' do
-      @item.shipping_burden_id = ''
+      @item.shipping_burden_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping burden can't be blank")
     end
@@ -67,7 +67,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '配送先の地域が無いと登録できないこと' do
-      @item.shipping_area_id = ''
+      @item.shipping_area_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping area can't be blank")
     end
@@ -79,7 +79,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '発送までの日時が無いと登録できないこと' do
-      @item.shipping_day_id = ''
+      @item.shipping_day_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
     end
@@ -91,7 +91,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の情報が無いと登録できないこと' do
-      @item.price = ''
+      @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end

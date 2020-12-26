@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :item_find, only: [:show, :edit, :update, :destroy]
   def index
     @items = Item.order('created_at DESC')
-    @buys = Buy.all
   end
 
   def new
@@ -13,22 +12,18 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to new_user_session_path
+      redirect_to root_path
     else
       render :new
     end
   end
 
   def show
-    @buys = Buy.all
   end
 
   def edit
-    buys = Buy.all
     item = Item.find(params[:id])
-    if buys.exists?(item_id: item.id)
-      redirect_to root_path
-    end
+    redirect_to root_path unless item.buy.nil?
     render :show if @item.user_id != current_user.id
   end
 
