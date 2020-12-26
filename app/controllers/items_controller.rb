@@ -22,8 +22,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    item = Item.find(params[:id])
-    redirect_to root_path unless item.buy.nil?
+    @item = Item.find(params[:id])
+    redirect_to root_path unless @item.buy.nil?
     render :show if @item.user_id != current_user.id
   end
 
